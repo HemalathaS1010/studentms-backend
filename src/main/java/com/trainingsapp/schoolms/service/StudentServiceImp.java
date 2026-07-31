@@ -115,20 +115,19 @@ public class StudentServiceImp implements IStudentService {
 		List<Student> student = new ArrayList<>();
 
 		
-//		for (AddStudentRequest st : request) {
-//		
-//			Student st1=new Student();		
-//			st1.setFirstName(st.getFirstName());
-//			st1.setLastName(st.getLastName());
-//			LocalDate date = dateutil.convertToDate(st.getBirthDate());
-//			st1.setBirthDate(date);
-//
-//			st1=dao.save(st1);
-//			student.add(st1);
-//			
-//			
-//		}
-		insert request;
+for (AddStudentRequest st : request) {
+
+Student st1=new Student();		
+st1.setFirstName(st.getFirstName());
+st1.setLastName(st.getLastName());
+LocalDate date = dateutil.convertToDate(st.getBirthDate());
+st1.setBirthDate(date);
+
+st1=dao.save(st1);
+student.add(st1);
+
+
+}
 		List<StudentDetails> detail = util.convertToStudentList(student);
 		return detail;
 	}
