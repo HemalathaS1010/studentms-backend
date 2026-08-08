@@ -15,7 +15,6 @@ public class Student {
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	@Column(columnDefinition = "serial")
 	private Long id;
 	
 	private String firstName;
