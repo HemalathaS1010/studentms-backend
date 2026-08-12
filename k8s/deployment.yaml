@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: studentms-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: studentms-backend
+  template:
+    metadata:
+      labels:
+        app: studentms-backend
+    spec:
+      containers:
+      - name: studentms-backend
+        image: spmhshema/studentms-backend:latest
+        ports:
+        - containerPort: 8585
