@@ -1,7 +1,7 @@
 
 # Student Management System - Backend
 
-A Spring Boot REST API for managing student and admin records, built with a complete CI/CD pipeline using Jenkins, Docker, and (planned) Kubernetes deployment.
+A Spring Boot REST API for managing student and admin records, built with a complete CI/CD pipeline using Jenkins, Docker, and Kubernetes deployment.
 
 ## Tech Stack
 
@@ -37,6 +37,8 @@ Base path: `/students`
 | PUT | `/students/update/add` | Update a student |
 | PUT | `/students/update/addList` | Update multiple students |
 | DELETE | `/students/remove/{id}` | Delete a student |
+
+> **Note:** For `POST /students/add` and `/students/addList`, the request body uses `firstName`, `lastName`, and `birthDate` (format: `dd-MM-yyyy`, e.g. `"15-08-2000"`). 
 
 ## CI/CD Pipeline
 
@@ -88,15 +90,30 @@ curl http://localhost:8081/students/findall
 ## Kubernetes Deployment
 
 Manifests are available in the `k8s/` folder:
-- `k8s/deployment.yaml` — Deployment spec (2 replicas)
-- `k8s/service.yaml` — LoadBalancer service exposing port 80 → 8080
+- `k8s/deployment.yaml` — Deployment spec with two containers in a single pod: the Spring Boot app and a PostgreSQL 15 database (co-located so the app can reach the DB via `localhost`)
+- `k8s/service.yaml` — LoadBalancer service exposing port 80 → 8585
 
-To deploy (tested locally with Minikube):
+Since local Minikube setup was blocked by a Windows VBS/UEFI configuration issue, this was deployed and tested using [Killercoda](https://killercoda.com)'s free "Kubernetes | One Node 2GB" cloud playground.
+
+To deploy:
 ```bash
+git clone https://github.com/HemalathaS1010/studentms-backend.git
+cd studentms-backend
 kubectl apply -f k8s/deployment.yaml
 kubectl apply -f k8s/service.yaml
 kubectl get pods
 kubectl get svc
+```
+
+Verify the pod is running (should show `2/2 Running` — app + postgres):
+```bash
+kubectl get pods
+```
+
+Test the API (replace with your NodePort/public URL):
+```bash
+ curl localhost:32035/students/findall
+```
 ```
 
 ## Project Structure
