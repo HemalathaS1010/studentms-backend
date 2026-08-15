@@ -139,6 +139,13 @@ studentms-backend/
 | Docker container running | `docker-container-running.png` |
 | API responding successfully | `application-api-working.png` |
 
+| Kubernetes pods & service status | `kubectl get pod,SVC.png` |
+| Kubernetes deployment success | `Kubernets deployment success.png` |
+| API test - Add student (K8s) | `K8s-api-add-stundent.png` |
+| API test - Add multiple students (K8s) | `k8s-api-addlist.png` |
+| API test - Get method (K8s) | `Kubernetes - Get method.png` |
+| Application API running on Kubernetes | `Application API running - Kubernetes.png` |
+
 ## Author
 
 Hemalatha S
